@@ -10,46 +10,60 @@
 <title>Add or Update | Flight API</title>
 </head>
 <body>
-	<form action="saveFlightData" method="POST">
-		<input type="hidden" id="updateFlag" name="updateFlag" value="${flight.flightNumber!=null?1:0 }"/>
+	<h1> Add or Update the Data</h1>
+	<form action="${Constants.ROOT_PATH }/saveFlightData" method="POST">
+		<input type="hidden" id="updateFlag" name="updateFlag"
+			value="${flight.flightNumber!=null?1:0 }" />
 		<table>
 			<tr>
 				<td>Flight Number:</td>
-				<td><input type="text" id="flightNumber" onblur="validateFlightNumber(this);" name="flightNumber" value="${flight.flightNumber}" required="required" ${flight.flightNumber!=null?'readonly':'' } /></td>
-				<td>Hex: </td>
-				<td><input type="text" name="hex" value="${flight.hex}" required="required" /></td>
+				<td><input type="text" id="flightNumber"
+					onblur="validateFlightNumber(this);" name="flightNumber"
+					value="${flight.flightNumber}" required="required"
+					${flight.flightNumber!=null?'readonly':'' } /></td>
+				<td>Hex:</td>
+				<td><input type="text" name="hex" value="${flight.hex}"
+					required="required" /></td>
 			</tr>
 			<tr>
-				<td>Reg Number: </td>
-				<td><input type="text" name="regNumber" value="${flight.regNumber}" required="required" /></td>
-				<td>Alt: </td>
-				<td><input type="number" name="alt" value="${flight.alt}" required="required" /></td>
+				<td>Reg Number:</td>
+				<td><input type="text" name="regNumber"
+					value="${flight.regNumber}" required="required" /></td>
+				<td>Alt:</td>
+				<td><input type="number" name="alt" value="${flight.alt}"
+					required="required" /></td>
 			<tr>
-				<td>Latitude: </td>
-				<td><input type="number" step=".000001" name="lat" value="${flight.lat}" required="required" /></td>
-				<td>Longitude: </td>
-				<td><input type="number" step=".000001" name="lng" value="${flight.lng}" required="required" /></td>
+				<td>Latitude:</td>
+				<td><input type="number" step=".000001" name="lat"
+					value="${flight.lat}" required="required" /></td>
+				<td>Longitude:</td>
+				<td><input type="number" step=".000001" name="lng"
+					value="${flight.lng}" required="required" /></td>
 			</tr>
 			<tr>
-				<td>Arr Iata: </td>
-				<td><input type="text" name="arrIata" value="${flight.arrIata}" required="required" /></td>				
-				<td>Dep Iata: </td>
-				<td><input type="text" name="depIata" value="${flight.depIata}" required="required" /></td>
+				<td>Arr Iata:</td>
+				<td><input type="text" name="arrIata" value="${flight.arrIata}"
+					required="required" /></td>
+				<td>Dep Iata:</td>
+				<td><input type="text" name="depIata" value="${flight.depIata}"
+					required="required" /></td>
 			</tr>
 			<tr>
 				<td>Flag</td>
-				<td><select style="width:100%;" name="flag" required="required">
+				<td><select style="width: 100%;" name="flag"
+					required="required">
 						<c:forEach items="${Constants.FLAGS}" var="flag">
-							<option value="${flag }"
-								${flag==flight.flag?'selected':'' }>${flag }</option>
+							<option value="${flag }" ${flag==flight.flag?'selected':'' }>${flag }</option>
 						</c:forEach>
 				</select></td>
-				<td>Speed: </td>
-				<td><input type="number" name="speed" value="${flight.speed}" required="required" /></td>
+				<td>Speed:</td>
+				<td><input type="number" name="speed" value="${flight.speed}"
+					required="required" /></td>
 			</tr>
 			<tr>
-			<td>Status: </td>
-				<td><select style="width:100%;" name="status" required="required">
+				<td>Status:</td>
+				<td><select style="width: 100%;" name="status"
+					required="required">
 						<c:forEach items="${Constants.STATUS_TYPES}" var="status">
 							<option value="${status }"
 								${status==flight.status?'selected':'' }>${status }</option>
@@ -78,7 +92,7 @@
 			if(ct==0 || updateFlag==1){
 				return;
 			}
-			alert('Flight Number already exists.');
+			alert('Username is already exist.');
 			window.flightNumber.value='';
 		}
 	</script>
