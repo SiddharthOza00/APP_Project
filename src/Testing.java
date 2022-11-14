@@ -8,14 +8,6 @@ import ca.concordia.webapp.vo.Flight;
 class Testing {
 
 	@Test
-	public void getFlightId() {
-		DbOperations operator = new DbOperations();
-		Flight flight = operator.get("57");
-		assertNotEquals(flight, null);
-		assertNotEquals(flight.getStatus(), " ");
-	}
-	
-	@Test
 	public void create() {
 		DbOperations operator = new DbOperations();
 		Flight flight = new Flight();
@@ -52,6 +44,16 @@ class Testing {
 		assertNotEquals(flight, null);
 		assertTrue(flight2 > 0);
 	}
+	
+	@Test
+	public void getFlightId() {
+		DbOperations operator = new DbOperations();
+		Flight flight = operator.get("57");
+		assertNotEquals(flight, null);
+		assertNotEquals(flight.getStatus(), " ");
+	}
+	
+	
 	
 	
 	@Test
