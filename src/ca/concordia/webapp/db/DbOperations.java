@@ -16,22 +16,26 @@ public class DbOperations {
 		int rowUpdated = 0;
 		try (Connection con = DbConnection.getConnection();
 				PreparedStatement pstat = con.prepareStatement(Constants.INSERT_QUERY)) {
-			pstat.setString(1, flight.getFlightNumber());
-			pstat.setString(2, flight.getHex());
-			pstat.setString(3, flight.getRegNumber());
-			pstat.setDouble(4, flight.getLat());
-			pstat.setDouble(5, flight.getLng());
-			pstat.setInt(6, flight.getAlt());
-			pstat.setString(7, flight.getArrIata());
-			pstat.setString(8, flight.getDepIata());
-			pstat.setString(9, flight.getFlag());
-			pstat.setInt(10, flight.getSpeed());
-			pstat.setString(11, flight.getStatus());
+			insertoperation(flight, pstat);
 			rowUpdated = pstat.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return rowUpdated;
+	}
+
+	private static void insertoperation(Flight flight, PreparedStatement pstat) throws SQLException {
+		pstat.setString(1, flight.getFlightNumber());
+		pstat.setString(2, flight.getHex());
+		pstat.setString(3, flight.getRegNumber());
+		pstat.setDouble(4, flight.getLat());
+		pstat.setDouble(5, flight.getLng());
+		pstat.setInt(6, flight.getAlt());
+		pstat.setString(7, flight.getArrIata());
+		pstat.setString(8, flight.getDepIata());
+		pstat.setString(9, flight.getFlag());
+		pstat.setInt(10, flight.getSpeed());
+		pstat.setString(11, flight.getStatus());
 	}
 
 	public static int multipleInsert(List<Flight> flights) {
@@ -42,17 +46,7 @@ public class DbOperations {
 		try (Connection con = DbConnection.getConnection();
 				PreparedStatement stat = con.prepareStatement(Constants.INSERT_QUERY)) {
 			for (Flight flight : flights) {
-				stat.setString(1, flight.getFlightNumber());
-				stat.setString(2, flight.getHex());
-				stat.setString(3, flight.getRegNumber());
-				stat.setDouble(4, flight.getLat());
-				stat.setDouble(5, flight.getLng());
-				stat.setInt(6, flight.getAlt());
-				stat.setString(7, flight.getArrIata());
-				stat.setString(8, flight.getDepIata());
-				stat.setString(9, flight.getFlag());
-				stat.setInt(10, flight.getSpeed());
-				stat.setString(11, flight.getStatus());
+				insertoperation(flight, stat);
 				stat.addBatch();
 			}
 			int batch[] = stat.executeBatch();
