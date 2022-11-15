@@ -6,13 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<body bgcolor="#DAEDF4">
 <meta charset="ISO-8859-1">
 <title>Home | Flight API</title>
 </head>
 <body>
-
-    <h1> FLIGHTS DATA</h1>
-	<a href="addOrUpdate"><button>Add</button></a>
+<center>
+	<h1 style="color: #1D5664">FLIGHT DATA</h1>
+	<form action="${Constants.ROOT_PATH }/search">
+		<input type="search" name="flightNumber" id="flightNumber"
+			placeholder="Enter Flight Number">
+		<button>Search</button>
+	</form>
+	<br>
+	<a href="${Constants.ROOT_PATH }/addOrUpdate"><button>Add</button></a>
 	<br>
 	<br>
 	<br>
@@ -46,17 +53,18 @@
 				<td>${flight.status}</td>
 
 				<td>&nbsp;&nbsp;<a
-					href="addOrUpdate?flightNumber=${flight.flightNumber }">Update</a>&nbsp;&nbsp;<a
-					href="delete?flightNumber=${flight.flightNumber }">Delete</a>&nbsp;&nbsp;
+					href="${Constants.ROOT_PATH }/addOrUpdate?flightNumber=${flight.flightNumber }">Update</a>&nbsp;&nbsp;<a
+					href="${Constants.ROOT_PATH }/delete?flightNumber=${flight.flightNumber }">Delete</a>&nbsp;&nbsp;
 				</td>
 			</tr>
 		</c:forEach>
+		</center>
 	</table>
 	<script>
 		window.onload = function() {
 			if ("${status}" != "${Constants.STATUS_NORMAL}") {
 				alert("${msg}");
-				//window.history.pushState({},'','/${Constants.ROOT_PATH}')
+				window.history.replaceState({}, '', '${Constants.ROOT_PATH}');
 			}
 		};
 	</script>
