@@ -6,11 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<body bgcolor="#DAEDF4">
 <meta charset="ISO-8859-1">
 <title>Add or Update | Flight API</title>
 </head>
 <body>
-	<h1> Add or Update the Data</h1>
+<center>
+	<h1 style="color: #1D5664"> Add/Update the Data</h1>
 	<form action="${Constants.ROOT_PATH }/saveFlightData" method="POST">
 		<input type="hidden" id="updateFlag" name="updateFlag"
 			value="${flight.flightNumber!=null?1:0 }" />
@@ -92,9 +94,10 @@
 			if(ct==0 || updateFlag==1){
 				return;
 			}
-			alert('Username is already exist.');
+			alert('Username already exists.');
 			window.flightNumber.value='';
 		}
 	</script>
+	</center>
 </body>
 </html>
